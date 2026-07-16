@@ -30,7 +30,7 @@ export default function SearchBar({ query, onQueryChange, onClearQuery }) {
         ref={inputRef}
         type="text"
         className="search-input"
-        placeholder="Buscar término, definición o ejemplo..."
+        placeholder="Buscá 'alignment', 'quick win', 'es lo que hay'..."
         autoComplete="off"
         spellCheck="false"
         value={query}

@@ -56,7 +56,7 @@ export default function App() {
 
       <div className="container-site">
         <ResultsInfo count={filtered.length} label={filterLabel} />
-        <TermGrid terms={filtered} query={query} />
+        <TermGrid terms={filtered} query={query} category={category} />
       </div>
 
       <div className="container-site">
