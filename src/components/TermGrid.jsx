@@ -83,17 +83,38 @@ function useViewportHeight() {
   return height
 }
 
-// Card sizing — kept in sync with the original CSS grid breakpoint
-// (`minmax(340px, 1fr)`) so visual layout doesn't shift on rollout.
-const CARD_MIN_WIDTH = 340
-const CARD_HEIGHT = 280
+// Card sizing — 300px minimum width keeps the grid at 2 columns even on
+// 640-800px viewports while still feeling comfortable on desktop.
+const CARD_MIN_WIDTH = 300
+const CARD_HEIGHT = 300
 const GAP_X = 24 // matches tailwind `gap-6` (1.5rem)
 const GAP_Y = 24
+
+/**
+ * Compute the column count that fits in `width` so each card lands at
+ * CARD_MIN_WIDTH (or slightly wider on big screens) and the trailing
+ * GAP_X is NOT counted as an extra column.
+ *
+ * Example with CARD_MIN_WIDTH=340, GAP_X=24, width=1200:
+ *   1200 / (340 + 24) = 3.29 → floor = 3 columns
+ *   column width = 1200 / 3 = 400px  (the last GAP_X is implicit, no
+ *   extra 24px to subtract, so columns fit perfectly).
+ */
+function computeColumns(width) {
+  if (width <= 0) return 1
+  return Math.max(1, Math.floor(width / (CARD_MIN_WIDTH + GAP_X)))
+}
 
 /**
  * Cell renderer for the virtualized grid. react-window reuses the same
  * component instance across rows/columns, so we read position from the
  * `columnIndex` / `rowIndex` props and pluck the matching term.
+ *
+ * The cell wrapper has the full cell size. We trim a uniform `GAP_X` from
+ * the right of the inner card and a uniform `GAP_Y` from the bottom so
+ * every card has the same width and the visual rhythm matches the old
+ * CSS grid. The leftover space inside the last cell is the implicit
+ * "edge gap" at the end of the row.
  */
 function Cell({ columnIndex, rowIndex, style, data }) {
   const { items, columns, query } = data
@@ -101,19 +122,25 @@ function Cell({ columnIndex, rowIndex, style, data }) {
   const term = items[index]
   if (!term) return null
 
-  // Inset the cell so the gap between cards is preserved (react-window gives
-  // us a back-to-back layout, we add the visual breathing room here).
   const cellStyle = {
-    ...style,
-    left: (style.left ?? 0) + columnIndex * GAP_X,
-    top: (style.top ?? 0) + rowIndex * GAP_Y,
-    width: (style.width ?? 0) - GAP_X,
-    height: (style.height ?? 0) - GAP_Y,
+    position: 'absolute',
+    left: style.left,
+    top: style.top,
+    width: style.width,
+    height: style.height,
   }
 
   return (
     <div style={cellStyle}>
-      <TermCard term={term} query={query} index={index} />
+      <div
+        className="h-full"
+        style={{
+          marginRight: GAP_X,
+          marginBottom: GAP_Y,
+        }}
+      >
+        <TermCard term={term} query={query} index={index} />
+      </div>
     </div>
   )
 }
@@ -127,16 +154,14 @@ export default function TermGrid({ terms, query, category }) {
     return <EmptyState query={query} category={category} />
   }
 
-  // How many columns fit in the available width using the same 340px
-  // breakpoint as the original CSS grid. Stays in sync visually.
-  const columns = width > 0 ? Math.max(1, Math.floor((width + GAP_X) / (CARD_MIN_WIDTH + GAP_X))) : 1
+  const columns = computeColumns(width)
   const rows = Math.ceil(terms.length / columns)
-  // Each column gets a share of the available width; we add one GAP_X to
-  // the total so the last column doesn't get squeezed by the missing gap.
-  const columnWidth = width > 0 ? (width + GAP_X) / columns : CARD_MIN_WIDTH
-  // Bound the viewport between 480px (small scrollable area) and 1100px
-  // (don't dominate the page on huge displays). Subtracts room for the
-  // sticky header and footer chrome so the grid feels contained.
+  // Each column is `width / columns` wide. react-window handles fractional
+  // widths OK, but we floor to whole pixels to keep card widths identical
+  // (otherwise the last cell could end up half-a-pixel wider due to FP).
+  const columnWidth = width / columns
+  // Bound the viewport between 480px and 1100px so the scroll surface
+  // feels substantial but never dominates the page.
   const height = Math.max(480, Math.min(1100, viewportHeight - 320))
 
   return (
@@ -146,7 +171,7 @@ export default function TermGrid({ terms, query, category }) {
           columnCount={columns}
           rowCount={rows}
           columnWidth={columnWidth}
-          rowHeight={CARD_HEIGHT}
+          rowHeight={CARD_HEIGHT + GAP_Y}
           width={width}
           height={height}
           itemData={{ items: terms, columns, query }}
