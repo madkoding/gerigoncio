@@ -66,23 +66,6 @@ function useElementWidth(ref) {
   return width
 }
 
-/**
- * Tracks the current viewport height in state so we never read `window`
- * during render. Returns a sensible default on the server / pre-hydration.
- */
-function useViewportHeight() {
-  const [height, setHeight] = useState(800)
-
-  useEffect(() => {
-    const update = () => setHeight(window.innerHeight)
-    update()
-    window.addEventListener('resize', update)
-    return () => window.removeEventListener('resize', update)
-  }, [])
-
-  return height
-}
-
 // Card sizing — 300px minimum width keeps the grid at 2 columns even on
 // 640-800px viewports while still feeling comfortable on desktop.
 const CARD_MIN_WIDTH = 300
@@ -155,7 +138,6 @@ function Cell({ columnIndex, rowIndex, style, data }) {
 export default function TermGrid({ terms, query, category }) {
   const hostRef = useRef(null)
   const width = useElementWidth(hostRef)
-  const viewportHeight = useViewportHeight()
 
   if (terms.length === 0) {
     return <EmptyState query={query} category={category} />
@@ -167,9 +149,13 @@ export default function TermGrid({ terms, query, category }) {
   // widths OK, but we floor to whole pixels to keep card widths identical
   // (otherwise the last cell could end up half-a-pixel wider due to FP).
   const columnWidth = width / columns
-  // Bound the viewport between 480px and 1100px so the scroll surface
-  // feels substantial but never dominates the page.
-  const height = Math.max(480, Math.min(1100, viewportHeight - 320))
+  // Total height is the sum of all rows. This lets the grid render in
+  // full document flow so the page-level scroll bar (and the footer
+  // below it) stay reachable. Virtualization is preserved because
+  // react-window only mounts the cells currently in view inside the
+  // scroll container — we just made the container tall enough to hold
+  // everything, eliminating the inner scroll surface.
+  const height = rows * (CARD_HEIGHT + GAP_Y)
 
   return (
     <div ref={hostRef} className="py-8 pb-24">
