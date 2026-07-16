@@ -13,7 +13,7 @@ function OriginPill({ origin }) {
   )
 }
 
-export default function TermCard({ term, query, index }) {
+export default function TermCard({ term, query, index, style }) {
   // Stagger the entrance animation for the first ~25 cards so the grid feels alive
   // without delaying the rest of the list. Caps at 0.5s to avoid huge delays on long lists.
   const animationDelay = `${Math.min(index * 0.02, 0.5)}s`
@@ -21,7 +21,7 @@ export default function TermCard({ term, query, index }) {
   return (
     <article
       className="term-card"
-      style={{ animationDelay }}
+      style={{ animationDelay, ...style }}
       aria-label={`${term.t} — ${term.c}`}
     >
       <div className="flex justify-between items-start mb-4 gap-4">

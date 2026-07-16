@@ -110,11 +110,13 @@ function computeColumns(width) {
  * component instance across rows/columns, so we read position from the
  * `columnIndex` / `rowIndex` props and pluck the matching term.
  *
- * The cell wrapper has the full cell size. We trim a uniform `GAP_X` from
- * the right of the inner card and a uniform `GAP_Y` from the bottom so
- * every card has the same width and the visual rhythm matches the old
- * CSS grid. The leftover space inside the last cell is the implicit
- * "edge gap" at the end of the row.
+ * The outer cell is the full `rowHeight x columnWidth` rectangle (e.g.
+ * 324 x 405 on desktop). The card itself is `CARD_HEIGHT` tall and sits
+ * at the top of the cell, leaving `GAP_Y` px of empty space below for
+ * the vertical gap between rows. Horizontally, the cell is `columnWidth`
+ * wide and the card is `columnWidth - GAP_X` wide (right padding eats
+ * the gap). This gives a clean, consistent grid with no half-pixel
+ * drift and no margin-collapse surprises.
  */
 function Cell({ columnIndex, rowIndex, style, data }) {
   const { items, columns, query } = data
@@ -122,25 +124,30 @@ function Cell({ columnIndex, rowIndex, style, data }) {
   const term = items[index]
   if (!term) return null
 
-  const cellStyle = {
-    position: 'absolute',
-    left: style.left,
-    top: style.top,
-    width: style.width,
-    height: style.height,
-  }
-
   return (
-    <div style={cellStyle}>
-      <div
-        className="h-full"
+    <div
+      style={{
+        position: 'absolute',
+        left: style.left,
+        top: style.top,
+        width: style.width,
+        height: style.height,
+        boxSizing: 'border-box',
+      }}
+    >
+      <TermCard
+        term={term}
+        query={query}
+        index={index}
         style={{
-          marginRight: GAP_X,
-          marginBottom: GAP_Y,
+          // Card lives in the top-left corner; width trims GAP_X on the
+          // right (so consecutive cards have a consistent gap), height
+          // stays at CARD_HEIGHT (the remaining GAP_Y px in the cell is
+          // the row gap).
+          width: style.width - GAP_X,
+          height: CARD_HEIGHT,
         }}
-      >
-        <TermCard term={term} query={query} index={index} />
-      </div>
+      />
     </div>
   )
 }

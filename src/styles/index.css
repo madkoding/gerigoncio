@@ -91,7 +91,7 @@
   }
 
   .term-card {
-    @apply relative flex flex-col overflow-hidden rounded-2xl border bg-ink-50 p-7 cursor-default h-full;
+    @apply relative flex flex-col overflow-hidden rounded-2xl border bg-ink-50 p-7 cursor-default;
     @apply transition-all duration-300;
     border-color: theme('colors.ink.200');
     animation: fadeIn 0.4s ease both;
