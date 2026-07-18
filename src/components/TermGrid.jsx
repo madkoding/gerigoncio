@@ -13,14 +13,14 @@ function EmptyState({ query, category }) {
   const hasCategory = category && category !== 'Todas'
 
   let title = 'Ningún término encontrado'
-  let body = 'Probá con otra palabra o cambiá la categoría. A veces el corporativés es más raro de lo que creés.'
+  let body = 'Prueba con otra palabra o cambia la categoría. A veces el lenguaje corporativo es más extraño de lo que crees.'
 
   if (hasQuery && hasCategory) {
-    title = 'Acá no hay nada, lo juramos'
+    title = 'Aquí no hay nada, lo juramos'
     body = `Ni "${query}" ni la categoría "${category}" se cruzan en este diccionario. Spoiler: probablemente ese término tampoco existe en el mundo real.`
   } else if (hasQuery) {
-    title = 'Eso no existe (al menos, acá)'
-    body = `"${query}" no aparece en ninguna definición. Puede que sea invento tuyo o que los gerentes todavía no lo adoptaron.`
+    title = 'Eso no existe (al menos, aquí)'
+    body = `"${query}" no aparece en ninguna definición. Puede que sea un invento tuyo o que los gerentes todavía no lo adoptaron.`
   } else if (hasCategory) {
     title = 'Categoría vacía'
     body = `La categoría "${category}" está más vacía que la nevera de la oficina un viernes a las 18.`

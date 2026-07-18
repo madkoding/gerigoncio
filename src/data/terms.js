@@ -1,5 +1,5 @@
 // Gerigoncio de Gerentes — dictionary dataset
-// 641 curated terms (82 rewritten with sharper humour, 30 new "Horrores" entries)
+// 641 curated terms (neutralised to español neutro)
 export const TERMS = [
   {
     "t": "Meeting",
@@ -31,8 +31,8 @@ export const TERMS = [
   },
   {
     "t": "Brainstorming",
-    "d": "Lluvia de ideas donde el jefe ya decidió ayer y vos estás ahí haciendo decoración con post-its.",
-    "e": "Mañana hay brainstorming. Traé ideas. (Mentira, traé que sí a todo.)",
+    "d": "Lluvia de ideas donde el jefe ya decidió ayer y tú estás ahí haciendo decoración con post-its.",
+    "e": "Mañana hay brainstorming. Trae ideas. (Mentira, trae que sí a todo.)",
     "c": "Reuniones",
     "o": "en"
   },
@@ -59,7 +59,7 @@ export const TERMS = [
   },
   {
     "t": "Check-in",
-    "d": "Reunión disfrazada de ‘me preocupo por vos’ para saber en qué andás sin pedirte un reporte.",
+    "d": "Reunión disfrazada de ‘me preocupo por ti’ para saber en qué andas sin pedirte un reporte.",
     "e": "Hagamos un check-in el viernes —traducción: necesito saber si vas a entregar algo.",
     "c": "Reuniones",
     "o": "en"
@@ -102,7 +102,7 @@ export const TERMS = [
   {
     "t": "Deep dive",
     "d": "Reunión donde se profundiza tanto en un tema que se termina ahogando en un Excel de 200 filas. Café, obligatorio.",
-    "e": "Necesitamos un deep dive del churn. Traé el café doble.",
+    "e": "Necesitamos un deep dive del churn. Trae el café doble.",
     "c": "Reuniones",
     "o": "en"
   },
@@ -165,7 +165,7 @@ export const TERMS = [
   {
     "t": "Parking lot",
     "d": "Cementerio corporativo de temas incómodos. Se habla de ellos una vez, nunca se resuelve.",
-    "e": "Lo dejamos en el parking lot —traducción: ‘me da fiaca resolverlo, vos no existís’.",
+    "e": "Lo dejamos en el parking lot —traducción: «me da pereza resolverlo, tú no existes’.",
     "c": "Reuniones",
     "o": "en"
   },
@@ -185,21 +185,21 @@ export const TERMS = [
   },
   {
     "t": "Blocker",
-    "d": "Excusa oficial para no entregar a tiempo. Si no tenés uno, inventalo. Si tenés uno, amplificálo.",
+    "d": "Excusa oficial para no entregar a tiempo. Si no tienes uno, inventalo. Si tienes uno, amplificálo.",
     "e": "Tengo un blocker con legal. Spoiler: el blocker soy yo que no empecé.",
     "c": "Reuniones",
     "o": "en"
   },
   {
     "t": "Circle back",
-    "d": "Diplomacia corporativa para decir ‘nunca’. Si te dicen ‘vamos a circle back’, mandá tu CV.",
+    "d": "Diplomacia corporativa para decir ‘nunca’. Si te dicen ‘vamos a circle back’, manda tu CV.",
     "e": "Hagamos circle back la próxima semana. La próxima semana, también. Y la otra.",
     "c": "Reuniones",
     "o": "en"
   },
   {
     "t": "Take it offline",
-    "d": "Forma elegante de pedirte que te calles. Bonus track: lo van a ‘tomar offline’ en otra reunión sin vos.",
+    "d": "Forma elegante de pedirte que te calles. Bonus track: lo van a ‘tomar offline’ en otra reunión sin ti.",
     "e": "Eso lo tomamos offline. (Alivio temporario.)",
     "c": "Reuniones",
     "o": "en"
@@ -220,7 +220,7 @@ export const TERMS = [
   },
   {
     "t": "Feedback",
-    "d": "Opinión disfrazada de crítica constructiva. ‘Feedback’ cuando lo das vos, ‘ataque personal’ cuando te lo dan.",
+    "d": "Opinión disfrazada de crítica constructiva. ‘Feedback’ cuando lo das tú, ‘ataque personal’ cuando te lo dan.",
     "e": "Te mando feedback por email —a las 23:59 un viernes.",
     "c": "Comunicación",
     "o": "en"
@@ -409,7 +409,7 @@ export const TERMS = [
   },
   {
     "t": "Heads up",
-    "d": "Advertencia de tsunami. ‘Te aviso antes de que explote y, si podés, tirá a otro al agua’.",
+    "d": "Advertencia de tsunami. ‘Te aviso antes de que explote y, si puedes, tira a otro al agua’.",
     "e": "Heads up: el cliente está molesto. (Pista: no solo está molesto, está en llamas.)",
     "c": "Comunicación",
     "o": "en"
@@ -794,7 +794,7 @@ export const TERMS = [
   },
   {
     "t": "Velocity",
-    "d": "Número mágico que mides, pero no entendés bien. Crece cuando ajustás cómo se mide. Magia.",
+    "d": "Número mágico que mides, pero no entiendes bien. Crece cuando ajustas cómo se mide. Magia.",
     "e": "Nuestra velocity promedio es 40 puntos. (Variable: a quién le preguntes.)",
     "c": "Ágil",
     "o": "en"
@@ -1095,7 +1095,7 @@ export const TERMS = [
   },
   {
     "t": "EBITDA",
-    "d": "Cifra favorita de los CFOs. Si la decís en una reunión, suena a que sabés de finanzas (no sabés).",
+    "d": "Cifra favorita de los CFOs. Si la dices en una reunión, suena a que sabes de finanzas (no sabes).",
     "e": "El EBITDA del trimestre fue positivo. CFO: ‘Ganamos’. Contador: ‘No exactamente…’",
     "c": "Negocios",
     "o": "en"
@@ -1123,7 +1123,7 @@ export const TERMS = [
   },
   {
     "t": "Bootstrapping",
-    "d": "Emprender sin inversión. ‘No nos quisieron dar plata, así que decimos que lo hicimos a propósito’.",
+    "d": "Emprender sin inversión. ‘No nos quisieron dar dinero, así que decimos que lo hicimos a propósito’.",
     "e": "Crecimos con bootstrapping. (Y con nuestras propias tarjetas de crédito.)",
     "c": "Negocios",
     "o": "en"
@@ -1151,7 +1151,7 @@ export const TERMS = [
   },
   {
     "t": "Cap table",
-    "d": "Documento sagrado que nadie quiere leer. Si la perdés, se desata un juicio de 6 años.",
+    "d": "Documento sagrado que nadie quiere leer. Si la pierde, se desata un juicio de 6 años.",
     "e": "Revisa la cap table. (Traducción: ‘hay gente enojada por la última ronda’.)",
     "c": "Negocios",
     "o": "en"
@@ -2474,7 +2474,7 @@ export const TERMS = [
   },
   {
     "t": "Burnout",
-    "d": "Estado en el que llegás a casa, mirás el techo y no recordás qué día es. Premiado con un ‘wellness webinar’.",
+    "d": "Estado en el que llegas a casa, miras el techo y no recordas qué día es. Premiado con un ‘wellness webinar’.",
     "e": "Estoy al borde del burnout. (La empresa respondió con un curso de mindfulness de 20 min.)",
     "c": "RRHH",
     "o": "en"
@@ -2607,14 +2607,14 @@ export const TERMS = [
   },
   {
     "t": "Quiet quitting",
-    "d": "Acto revolucionario de hacer solo lo que te pagan. Bonus: nadie se entera hasta el día que renunciás.",
+    "d": "Acto revolucionario de hacer solo lo que te pagan. Bonus: nadie se entera hasta el día que renuncias.",
     "e": "Estoy en modo quiet quitting. (Traducción: ‘por fin, salud mental’.)",
     "c": "RRHH",
     "o": "en"
   },
   {
     "t": "Loud quitting",
-    "d": "Cuando el quiet quitting no alcanza y empezás a decir las verdades en público. LinkedIn te lo agradece.",
+    "d": "Cuando el quiet quitting no alcanza y empiezas a decir las verdades en público. LinkedIn te lo agradece.",
     "e": "Dejé el quiet quitting por loud quitting. (El jefe, ofendido. Yo, libre.)",
     "c": "RRHH",
     "o": "en"
@@ -2622,7 +2622,7 @@ export const TERMS = [
   {
     "t": "Act your wage",
     "d": "Trabajar solo por lo que te pagan. Ni un minuto más.",
-    "e": "Decidí act your wage.",
+    "e": "Decide act your wage.",
     "c": "RRHH",
     "o": "en"
   },
@@ -2929,7 +2929,7 @@ export const TERMS = [
   },
   {
     "t": "Cloud",
-    "d": "La computadora de otro. Pagás por no tener la tuya. Si te quedás sin internet, no trabajás.",
+    "d": "La computadora de otro. Pagas por no tener la tuya. Si te quedas sin internet, no trabajas.",
     "e": "Migramos todo al cloud. (Y pagamos más que en un data center, pero suena sexy.)",
     "c": "Tecnología",
     "o": "en"
@@ -4294,7 +4294,7 @@ export const TERMS = [
   },
   {
     "t": "Friendly reminder",
-    "d": "Recordatorio disfrazado de cordialidad. Es un email con tono de madre que no aguantás.",
+    "d": "Recordatorio disfrazado de cordialidad. Es un email con tono de madre que no resistes.",
     "e": "“Friendly reminder: lo entregaste hace 3 semanas. :)” —el smiley duele más.",
     "c": "Horrores",
     "o": "en"
@@ -4315,7 +4315,7 @@ export const TERMS = [
   },
   {
     "t": "Best practice",
-    "d": "Lo que hacía tu ex-jefe y servía. Lo traés como si lo hubieras inventado vos.",
+    "d": "Lo que hacía tu ex-jefe y servía. Lo traes como si lo hubieras inventado tú.",
     "e": "“Esto es best practice” —adjunto: 4 artículos de 2014.",
     "c": "Horrores",
     "o": "en"
@@ -4365,7 +4365,7 @@ export const TERMS = [
   {
     "t": "I’ll loop you in",
     "d": "Promesa vaga de incluirte. La realidad: te agregan al thread 2 días después, ya cerrado.",
-    "e": "“Te loopeo en la conversación”. (Mentira. Te loopeo en otra que no tiene nada que ver.)",
+    "e": "“Te incluyo en la conversación”. (Mentira. Te incluyo en otra que no tiene nada que ver.)",
     "c": "Horrores",
     "o": "en"
   },
@@ -4393,7 +4393,7 @@ export const TERMS = [
   {
     "t": "Hacer un Excel",
     "d": "Forma pasivo-agresiva de pedirle a alguien que justifique su trabajo. Bonus si tiene tablas dinámicas.",
-    "e": "“Mandame un Excel con los números” —traducción: no te creo, demostramelo.",
+    "e": "“Mándame un Excel con los números” —traducción: no te creo, demuéstramelo.",
     "c": "Horrores",
     "o": "es"
   },
@@ -4406,7 +4406,7 @@ export const TERMS = [
   },
   {
     "t": "Hacer un one-pager",
-    "d": "Resumen de una página que termina ocupando 3. Lo mandás y nadie lo lee igual.",
+    "d": "Resumen de una página que termina ocupando 3. Lo mandas y nadie lo lee igual.",
     "e": "“Necesito un one-pager sobre esto”. (Adjunto: 11 páginas de bullets.)",
     "c": "Horrores",
     "o": "es"
@@ -4421,7 +4421,7 @@ export const TERMS = [
   {
     "t": "Traer la data",
     "d": "Pedir pruebas para sostener una opinión. A veces se pide después de perder la discusión.",
-    "e": "“Traé data que respalde eso” —alguien que ya perdió el debate.",
+    "e": "“Trae data que respalde eso” —alguien que ya perdió el debate.",
     "c": "Horrores",
     "o": "es"
   },
@@ -4434,7 +4434,7 @@ export const TERMS = [
   },
   {
     "t": "Actualización semanal",
-    "d": "Email de 12 párrafos que nadie lee. Lo mandás porque “hay que comunicar”.",
+    "d": "Email de 12 párrafos que nadie lee. Lo mandas porque “hay que comunicar”.",
     "e": "Weekly update de Juan —archivado sin abrir, como cada viernes.",
     "c": "Horrores",
     "o": "es"
@@ -4455,7 +4455,7 @@ export const TERMS = [
   },
   {
     "t": "Drinking from the firehose",
-    "d": "Onboarding donde te avientan 1000 cosas al día. Después de la semana 1, pedís la renuncia.",
+    "d": "Onboarding donde te avientan 1000 cosas al día. Después de la semana 1, pides la renuncia.",
     "e": "“Es como beber de una manguera contra incendios”. —manual de onboarding, página 3.",
     "c": "Horrores",
     "o": "en"
@@ -4463,7 +4463,7 @@ export const TERMS = [
   {
     "t": "Ser el quarterback",
     "d": "“Ser quien orquesta todo”, en criollo: el que coordina 12 cosas y nadie le agradece.",
-    "e": "“Vos vas a ser el quarterback de esto” —yo no firmé para esto.",
+    "e": "“Tú vas a ser el quarterback de esto” —yo no firmé para esto.",
     "c": "Horrores",
     "o": "en"
   },
@@ -4477,7 +4477,7 @@ export const TERMS = [
   {
     "t": "Tomémonos un café",
     "d": "Forma de pedir feedback negativo cara a cara. Nadie toma café. Nadie lo disfruta.",
-    "e": "“¿Te tomás un café?”. (En 14 años, 0 cafés reales.)",
+    "e": "“¿Te tomas un café?”. (En 14 años, 0 cafés reales.)",
     "c": "Horrores",
     "o": "es"
   },
