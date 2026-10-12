@@ -1,11 +1,11 @@
-import Header from './components/Header.jsx'
-import SearchBar from './components/SearchBar.jsx'
-import CategoryFilters from './components/CategoryFilters.jsx'
-import ResultsInfo from './components/ResultsInfo.jsx'
-import TermGrid from './components/TermGrid.jsx'
-import Footer from './components/Footer.jsx'
-import NoiseBackground from './components/NoiseBackground.jsx'
-import { useDictionary } from './hooks/useDictionary.js'
+import Header from "./components/Header.jsx";
+import SearchBar from "./components/SearchBar.jsx";
+import CategoryFilters from "./components/CategoryFilters.jsx";
+import ResultsInfo from "./components/ResultsInfo.jsx";
+import TermGrid from "./components/TermGrid.jsx";
+import Footer from "./components/Footer.jsx";
+import NoiseBackground from "./components/NoiseBackground.jsx";
+import { useDictionary } from "./hooks/useDictionary.js";
 
 /**
  * Top-level page. Composes the dictionary sections and owns the global
@@ -25,7 +25,7 @@ export default function App() {
     setQuery,
     clearQuery,
     selectCategory,
-  } = useDictionary()
+  } = useDictionary();
 
   return (
     <>
@@ -37,7 +37,10 @@ export default function App() {
 
       <div
         className="sticky top-0 z-[100] py-8 bg-[rgba(15,14,12,0.85)] backdrop-blur-xl border-b border-ink-200"
-        style={{ backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)' }}
+        style={{
+          backdropFilter: "blur(20px)",
+          WebkitBackdropFilter: "blur(20px)",
+        }}
       >
         <div className="container-site">
           <SearchBar
@@ -63,5 +66,5 @@ export default function App() {
         <Footer />
       </div>
     </>
-  )
+  );
 }

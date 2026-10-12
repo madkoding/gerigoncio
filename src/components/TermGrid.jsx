@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from 'react'
-import { FixedSizeGrid as Grid } from 'react-window'
-import TermCard from './TermCard.jsx'
+import { useEffect, useRef, useState } from "react";
+import { FixedSizeGrid as Grid } from "react-window";
+import TermCard from "./TermCard.jsx";
 
 /**
  * Empty state shown when the current filter combination yields no results.
@@ -9,21 +9,22 @@ import TermCard from './TermCard.jsx'
  * user is searching, filtering by category, or both.
  */
 function EmptyState({ query, category }) {
-  const hasQuery = Boolean(query && query.trim())
-  const hasCategory = category && category !== 'Todas'
+  const hasQuery = Boolean(query && query.trim());
+  const hasCategory = category && category !== "Todas";
 
-  let title = 'Ningún término encontrado'
-  let body = 'Prueba con otra palabra o cambia la categoría. A veces el lenguaje corporativo es más extraño de lo que crees.'
+  let title = "Ningún término encontrado";
+  let body =
+    "Prueba con otra palabra o cambia la categoría. A veces el lenguaje corporativo es más extraño de lo que crees.";
 
   if (hasQuery && hasCategory) {
-    title = 'Aquí no hay nada, lo juramos'
-    body = `Ni "${query}" ni la categoría "${category}" se cruzan en este diccionario. Spoiler: probablemente ese término tampoco existe en el mundo real.`
+    title = "Aquí no hay nada, lo juramos";
+    body = `Ni "${query}" ni la categoría "${category}" se cruzan en este diccionario. Spoiler: probablemente ese término tampoco existe en el mundo real.`;
   } else if (hasQuery) {
-    title = 'Eso no existe (al menos, aquí)'
-    body = `"${query}" no aparece en ninguna definición. Puede que sea un invento tuyo o que los gerentes todavía no lo adoptaron.`
+    title = "Eso no existe (al menos, aquí)";
+    body = `"${query}" no aparece en ninguna definición. Puede que sea un invento tuyo o que los gerentes todavía no lo adoptaron.`;
   } else if (hasCategory) {
-    title = 'Categoría vacía'
-    body = `La categoría "${category}" está más vacía que la nevera de la oficina un viernes a las 18.`
+    title = "Categoría vacía";
+    body = `La categoría "${category}" está más vacía que la nevera de la oficina un viernes a las 18.`;
   }
 
   return (
@@ -34,11 +35,9 @@ function EmptyState({ query, category }) {
       <h3 className="font-display italic text-[1.8rem] text-gold-light mb-2">
         {title}
       </h3>
-      <p className="text-parchment-mute max-w-[480px] mx-auto">
-        {body}
-      </p>
+      <p className="text-parchment-mute max-w-[480px] mx-auto">{body}</p>
     </div>
-  )
+  );
 }
 
 /**
@@ -46,32 +45,32 @@ function EmptyState({ query, category }) {
  * Used to compute how many virtualized columns fit in the viewport.
  */
 function useElementWidth(ref) {
-  const [width, setWidth] = useState(0)
+  const [width, setWidth] = useState(0);
 
   useEffect(() => {
-    const node = ref.current
-    if (!node) return
+    const node = ref.current;
+    if (!node) return;
 
     const update = () => {
-      const next = node.getBoundingClientRect().width
-      setWidth(next)
-    }
+      const next = node.getBoundingClientRect().width;
+      setWidth(next);
+    };
 
-    update()
-    const ro = new ResizeObserver(update)
-    ro.observe(node)
-    return () => ro.disconnect()
-  }, [ref])
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(node);
+    return () => ro.disconnect();
+  }, [ref]);
 
-  return width
+  return width;
 }
 
 // Card sizing — 300px minimum width keeps the grid at 2 columns even on
 // 640-800px viewports while still feeling comfortable on desktop.
-const CARD_MIN_WIDTH = 300
-const CARD_HEIGHT = 300
-const GAP_X = 24 // matches tailwind `gap-6` (1.5rem)
-const GAP_Y = 24
+const CARD_MIN_WIDTH = 300;
+const CARD_HEIGHT = 300;
+const GAP_X = 24; // matches tailwind `gap-6` (1.5rem)
+const GAP_Y = 24;
 
 /**
  * Compute the column count that fits in `width` so each card lands at
@@ -84,8 +83,8 @@ const GAP_Y = 24
  *   extra 24px to subtract, so columns fit perfectly).
  */
 function computeColumns(width) {
-  if (width <= 0) return 1
-  return Math.max(1, Math.floor(width / (CARD_MIN_WIDTH + GAP_X)))
+  if (width <= 0) return 1;
+  return Math.max(1, Math.floor(width / (CARD_MIN_WIDTH + GAP_X)));
 }
 
 /**
@@ -102,20 +101,20 @@ function computeColumns(width) {
  * drift and no margin-collapse surprises.
  */
 function Cell({ columnIndex, rowIndex, style, data }) {
-  const { items, columns, query } = data
-  const index = rowIndex * columns + columnIndex
-  const term = items[index]
-  if (!term) return null
+  const { items, columns, query } = data;
+  const index = rowIndex * columns + columnIndex;
+  const term = items[index];
+  if (!term) return null;
 
   return (
     <div
       style={{
-        position: 'absolute',
+        position: "absolute",
         left: style.left,
         top: style.top,
         width: style.width,
         height: style.height,
-        boxSizing: 'border-box',
+        boxSizing: "border-box",
       }}
     >
       <TermCard
@@ -132,30 +131,30 @@ function Cell({ columnIndex, rowIndex, style, data }) {
         }}
       />
     </div>
-  )
+  );
 }
 
 export default function TermGrid({ terms, query, category }) {
-  const hostRef = useRef(null)
-  const width = useElementWidth(hostRef)
+  const hostRef = useRef(null);
+  const width = useElementWidth(hostRef);
 
   if (terms.length === 0) {
-    return <EmptyState query={query} category={category} />
+    return <EmptyState query={query} category={category} />;
   }
 
-  const columns = computeColumns(width)
-  const rows = Math.ceil(terms.length / columns)
+  const columns = computeColumns(width);
+  const rows = Math.ceil(terms.length / columns);
   // Each column is `width / columns` wide. react-window handles fractional
   // widths OK, but we floor to whole pixels to keep card widths identical
   // (otherwise the last cell could end up half-a-pixel wider due to FP).
-  const columnWidth = width / columns
+  const columnWidth = width / columns;
   // Total height is the sum of all rows. This lets the grid render in
   // full document flow so the page-level scroll bar (and the footer
   // below it) stay reachable. Virtualization is preserved because
   // react-window only mounts the cells currently in view inside the
   // scroll container — we just made the container tall enough to hold
   // everything, eliminating the inner scroll surface.
-  const height = rows * (CARD_HEIGHT + GAP_Y)
+  const height = rows * (CARD_HEIGHT + GAP_Y);
 
   return (
     <div ref={hostRef} className="py-8 pb-24">
@@ -174,5 +173,5 @@ export default function TermGrid({ terms, query, category }) {
         </Grid>
       )}
     </div>
-  )
+  );
 }

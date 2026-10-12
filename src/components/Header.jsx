@@ -8,10 +8,13 @@ export default function Header({ totalTerms, totalCategories }) {
         de Gerentes
       </h1>
       <p className="text-[1.1rem] text-parchment-dim max-w-[600px] mx-auto mb-8 leading-relaxed">
-        El diccionario de <em className="text-gold-light not-italic font-semibold">traducción corporativa</em>{' '}
-        para quienes alguna vez escucharon
-        &ldquo;hagamos un quick sync para alinear el trade-off del delivery&rdquo; y
-        fingieron entender. Spoiler: nadie entendió.
+        El diccionario de{" "}
+        <em className="text-gold-light not-italic font-semibold">
+          traducción corporativa
+        </em>{" "}
+        para quienes alguna vez escucharon &ldquo;hagamos un quick sync para
+        alinear el trade-off del delivery&rdquo; y fingieron entender. Spoiler:
+        nadie entendió.
       </p>
 
       <div className="flex justify-center flex-wrap gap-12 mt-10">
@@ -49,5 +52,5 @@ export default function Header({ totalTerms, totalCategories }) {
         </div>
       </div>
     </header>
-  )
+  );
 }

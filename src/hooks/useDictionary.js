@@ -1,5 +1,11 @@
-import { useCallback, useMemo, useState } from 'react'
-import { TERMS, CATEGORIES, filterTerms, countByCategory, labelForCategory } from '../lib/dictionary.js'
+import { useCallback, useMemo, useState } from "react";
+import {
+  TERMS,
+  CATEGORIES,
+  filterTerms,
+  countByCategory,
+  labelForCategory,
+} from "../lib/dictionary.js";
 
 /**
  * Centralised state container for the dictionary page.
@@ -9,29 +15,29 @@ import { TERMS, CATEGORIES, filterTerms, countByCategory, labelForCategory } fro
  * that every section of the page can consume independently.
  */
 export function useDictionary() {
-  const [query, setQuery] = useState('')
-  const [category, setCategory] = useState('Todas')
+  const [query, setQuery] = useState("");
+  const [category, setCategory] = useState("Todas");
 
   const filtered = useMemo(
     () => filterTerms(TERMS, { query, category }),
     [query, category],
-  )
+  );
 
-  const totalTerms = TERMS.length
-  const totalCategories = CATEGORIES.length - 1 // exclude "Todas"
+  const totalTerms = TERMS.length;
+  const totalCategories = CATEGORIES.length - 1; // exclude "Todas"
 
   const categoryCounts = useMemo(() => {
-    const map = new Map()
+    const map = new Map();
     for (const cat of CATEGORIES) {
-      map.set(cat, countByCategory(cat))
+      map.set(cat, countByCategory(cat));
     }
-    return map
-  }, [])
+    return map;
+  }, []);
 
-  const filterLabel = labelForCategory(category)
+  const filterLabel = labelForCategory(category);
 
-  const clearQuery = useCallback(() => setQuery(''), [])
-  const selectCategory = useCallback((next) => setCategory(next), [])
+  const clearQuery = useCallback(() => setQuery(""), []);
+  const selectCategory = useCallback((next) => setCategory(next), []);
 
   return {
     // raw state
@@ -48,5 +54,5 @@ export function useDictionary() {
     setQuery,
     clearQuery,
     selectCategory,
-  }
+  };
 }
