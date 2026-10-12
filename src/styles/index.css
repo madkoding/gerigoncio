@@ -21,7 +21,7 @@
   }
 
   body {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: "Inter", system-ui, sans-serif;
     background-color: #0f0e0c;
     color: #f0ead6;
     min-height: 100vh;
@@ -29,8 +29,16 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-image:
-      radial-gradient(circle at 20% 10%, rgba(212, 165, 116, 0.08) 0%, transparent 40%),
-      radial-gradient(circle at 80% 80%, rgba(212, 165, 116, 0.05) 0%, transparent 40%);
+      radial-gradient(
+        circle at 20% 10%,
+        rgba(212, 165, 116, 0.08) 0%,
+        transparent 40%
+      ),
+      radial-gradient(
+        circle at 80% 80%,
+        rgba(212, 165, 116, 0.05) 0%,
+        transparent 40%
+      );
   }
 }
 
@@ -42,7 +50,7 @@
   .eyebrow {
     @apply inline-block rounded-full px-4 py-1.5 font-mono text-xs uppercase tracking-[0.3em] text-gold;
     background: rgba(212, 165, 116, 0.05);
-    border: 1px solid theme('colors.gold.dark');
+    border: 1px solid theme("colors.gold.dark");
     margin-bottom: 1.5rem;
   }
 
@@ -57,12 +65,12 @@
   .search-input {
     @apply w-full rounded-full border bg-ink-50 px-6 py-5 pl-14 text-base text-parchment placeholder:text-parchment-mute;
     @apply transition-all duration-300 font-sans;
-    border-color: theme('colors.ink.200');
+    border-color: theme("colors.ink.200");
   }
 
   .search-input:focus {
     outline: none;
-    border-color: theme('colors.gold.DEFAULT');
+    border-color: theme("colors.gold.DEFAULT");
     box-shadow: 0 0 0 4px rgba(212, 165, 116, 0.1);
   }
 
@@ -72,14 +80,14 @@
   }
 
   .filter-btn:hover {
-    border-color: theme('colors.gold.dark');
-    color: theme('colors.gold.light');
+    border-color: theme("colors.gold.dark");
+    color: theme("colors.gold.light");
   }
 
   .filter-btn.is-active {
     @apply font-semibold text-ink;
-    background: theme('colors.gold.DEFAULT');
-    border-color: theme('colors.gold.DEFAULT');
+    background: theme("colors.gold.DEFAULT");
+    border-color: theme("colors.gold.DEFAULT");
   }
 
   .filter-count {
@@ -93,12 +101,12 @@
   .term-card {
     @apply relative flex flex-col overflow-hidden rounded-2xl border bg-ink-50 p-7 cursor-default;
     @apply transition-all duration-300;
-    border-color: theme('colors.ink.200');
+    border-color: theme("colors.ink.200");
     animation: fadeIn 0.4s ease both;
   }
 
   .term-card::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -110,7 +118,7 @@
   }
 
   .term-card:hover {
-    border-color: theme('colors.gold.dark');
+    border-color: theme("colors.gold.dark");
     transform: translateY(-2px);
     box-shadow: 0 20px 40px -20px rgba(212, 165, 116, 0.2);
   }
@@ -155,12 +163,12 @@
 
   .example-quote {
     @apply text-[0.85rem] text-parchment-mute italic px-4 py-3 rounded mb-4;
-    background: theme('colors.ink.100');
-    border-left: 2px solid theme('colors.gold.dark');
+    background: theme("colors.ink.100");
+    border-left: 2px solid theme("colors.gold.dark");
   }
 
   .example-quote::before {
-    content: '💬 ';
+    content: "💬 ";
     font-style: normal;
   }
 
@@ -169,11 +177,11 @@
   }
 
   .category-tag::before {
-    content: '';
+    content: "";
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: theme('colors.gold.DEFAULT');
+    background: theme("colors.gold.DEFAULT");
   }
 
   .noise-bg {

@@ -3,22 +3,22 @@
  * payload, to keep the highlight feature XSS-safe.
  */
 const HTML_ESCAPES = {
-  '&': '&amp;',
-  '<': '&lt;',
-  '>': '&gt;',
-  '"': '&quot;',
-  "'": '&#39;',
-}
+  "&": "&amp;",
+  "<": "&lt;",
+  ">": "&gt;",
+  '"': "&quot;",
+  "'": "&#39;",
+};
 
 export function escapeHtml(value) {
-  return String(value ?? '').replace(/[&<>"']/g, (char) => HTML_ESCAPES[char])
+  return String(value ?? "").replace(/[&<>"']/g, (char) => HTML_ESCAPES[char]);
 }
 
 /**
  * Returns a regex-safe version of the user query (case-insensitive, global).
  */
 function escapeRegex(value) {
-  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
 /**
@@ -29,10 +29,10 @@ function escapeRegex(value) {
  * If `query` is empty, returns the escaped text unchanged.
  */
 export function highlight(text, query) {
-  const safeText = escapeHtml(text)
-  const trimmed = (query ?? '').trim()
-  if (!trimmed) return safeText
+  const safeText = escapeHtml(text);
+  const trimmed = (query ?? "").trim();
+  if (!trimmed) return safeText;
 
-  const pattern = new RegExp(escapeRegex(trimmed), 'gi')
-  return safeText.replace(pattern, (match) => `<mark>${match}</mark>`)
+  const pattern = new RegExp(escapeRegex(trimmed), "gi");
+  return safeText.replace(pattern, (match) => `<mark>${match}</mark>`);
 }

@@ -1,22 +1,22 @@
-import { highlight } from '../lib/highlight.js'
+import { highlight } from "../lib/highlight.js";
 
 /**
  * Renders the language origin badge for a term.
  * `en` -> EN, `es` -> ES, anything else (e.g. "mix") -> MX.
  */
 function OriginPill({ origin }) {
-  const label = origin === 'en' ? 'EN' : origin === 'es' ? 'ES' : 'MX'
+  const label = origin === "en" ? "EN" : origin === "es" ? "ES" : "MX";
   return (
     <span className="origin-pill" data-origin={origin}>
       {label}
     </span>
-  )
+  );
 }
 
 export default function TermCard({ term, query, index, style }) {
   // Stagger the entrance animation for the first ~25 cards so the grid feels alive
   // without delaying the rest of the list. Caps at 0.5s to avoid huge delays on long lists.
-  const animationDelay = `${Math.min(index * 0.02, 0.5)}s`
+  const animationDelay = `${Math.min(index * 0.02, 0.5)}s`;
 
   return (
     <article
@@ -46,5 +46,5 @@ export default function TermCard({ term, query, index, style }) {
 
       <div className="category-tag">{term.c}</div>
     </article>
-  )
+  );
 }

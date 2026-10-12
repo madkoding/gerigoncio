@@ -1,16 +1,16 @@
-import { useRef } from 'react'
+import { useRef } from "react";
 
 /**
  * Sticky control bar containing the search input and (rendered by the parent)
  * the category filters. The search field is fully controlled.
  */
 export default function SearchBar({ query, onQueryChange, onClearQuery }) {
-  const inputRef = useRef(null)
+  const inputRef = useRef(null);
 
   const handleClear = () => {
-    onClearQuery()
-    inputRef.current?.focus()
-  }
+    onClearQuery();
+    inputRef.current?.focus();
+  };
 
   return (
     <div className="relative max-w-[700px] mx-auto mb-6">
@@ -41,7 +41,7 @@ export default function SearchBar({ query, onQueryChange, onClearQuery }) {
       <button
         type="button"
         className={`absolute right-4 top-1/2 -translate-y-1/2 bg-ink-100 border-none text-parchment-dim w-8 h-8 rounded-full cursor-pointer flex items-center justify-center transition-all duration-200 hover:bg-gold-dark hover:text-ink ${
-          query ? 'flex' : 'hidden'
+          query ? "flex" : "hidden"
         }`}
         onClick={handleClear}
         aria-label="Limpiar búsqueda"
@@ -49,5 +49,5 @@ export default function SearchBar({ query, onQueryChange, onClearQuery }) {
         ✕
       </button>
     </div>
-  )
+  );
 }
